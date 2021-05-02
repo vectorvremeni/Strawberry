@@ -1,0 +1,13 @@
+﻿@model UserModel
+
+<div>
+    @if (Model.Authenticated)
+    {
+        <div>hi @Model.Name!</div>
+        <div>Cool! you are in!</div>
+    }
+    else
+    {
+        <div>login please</div>
+    }
+</div>

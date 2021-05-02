@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Site.Models;
 using System;
@@ -13,12 +14,20 @@ namespace Site.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        //RoleManager<IdentityRole> _roleManager;
+        UserManager<IdentityUser> _userManager;
+        public HomeController(UserManager<IdentityUser> userManager)
         {
-            _logger = logger;
+            //_roleManager = roleManager;
+            _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Index()
         {
             return View();
         }
