@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Site.Models;
@@ -29,9 +30,15 @@ namespace Site.Controllers
 
         public async Task<IActionResult> Index()
         {
+            /*if (User.Identity.IsAuthenticated)
+            {
+                IdentityUser u = await _userManager.GetUserAsync(User);
+                await _userManager.AddToRoleAsync(u, "Admin");
+            }*/
             return View();
         }
 
+        [Authorize(Roles ="Admin")]
         public IActionResult Privacy()
         {
             return View();
