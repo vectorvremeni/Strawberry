@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Site.Data;
+using Site.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,7 @@ namespace Site
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
+            services.AddSingleton<CodeGenerator>();
         }
         
 
