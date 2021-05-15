@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SignalR.Hubs;
 using Site.Data;
 using Site.Services;
 using System;
@@ -33,6 +34,7 @@ namespace Site
                 options.UseSqlServer(
                     Configuration.GetConnectionString("Straw_Local")));
             services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddSignalR();
 
             //services.AddIdentity<IdentityUser, IdentityRole>()
             //    .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -81,6 +83,7 @@ namespace Site
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<Hubs>("/SR");
             });
         }
     }

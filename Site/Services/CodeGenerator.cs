@@ -14,7 +14,7 @@ namespace Site.Services
         public int GenCode()
         {
             GenTime = DateTime.Now;
-            Code = r.Next(1000, 10000);
+            Code = r.Next(10000, 100000);
             return Code;
         }
     }
