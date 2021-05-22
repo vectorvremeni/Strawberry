@@ -28,6 +28,11 @@ function start() {
 
 start();
 
+connection.on("UpdateCode", function ()
+{
+	window.location.reload();
+});
+
 function setcounter() {
 	//document.getElementById("cntr").innerHTML = ReconnectTimeout;
 }

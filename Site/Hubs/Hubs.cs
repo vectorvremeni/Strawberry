@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SignalR.Hubs
 {
-	[Authorize]
+	//[Authorize]
 	public class Hubs : Hub
 	{
 		UserManager<IdentityUser> _um;
@@ -18,17 +18,12 @@ namespace SignalR.Hubs
 			_um = um;
 		}
 
-		public async Task SendMessage(String userId, String message)
-		{
-			await Clients.All.SendAsync("ReceiveMessage", userId, message);
-		}
-
 		public async override Task OnConnectedAsync()
 		{
 			IdentityUser user = await _um.GetUserAsync(Context.User);
 			String cid = Context.ConnectionId;
 
-			await Clients.All.SendAsync("UserAdded", user.Email);
+			//await Clients.All.SendAsync("UserAdded", user.Email);
 			await base.OnConnectedAsync();
 		}
 
