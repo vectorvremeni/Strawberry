@@ -29,21 +29,24 @@ namespace Site.Controllers
         [HttpGet]
         public IActionResult EnterCode()
         {
-            return View();
+            return View(new EnterCodeModel());
         }
 
         [HttpPost]
         public IActionResult EnterCode(int code)
         {
+            EnterCodeModel m = new EnterCodeModel();
             if (_gen.Code == code)
             {
-
+                m.Message = "OK";
+                m.Status = EnterCodeModel.StatusOK;
             }
             else
             {
-
+                m.Message = "Error";
+                m.Status = EnterCodeModel.StatusError;
             }
-            return View();
+            return View(m);
         }
     }
 }

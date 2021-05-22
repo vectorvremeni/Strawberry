@@ -1,6 +1,15 @@
-﻿<h1>EnterCode View</h1>
+﻿@model EnterCodeModel
 
-<form method="post">
-    <input type="text" name="code" />
-    <input type="submit" />
-</form>
+<h1>EnterCode View</h1>
+
+<div>
+    <h2>@Model.Message</h2>
+</div>
+@if (Model.Status != EnterCodeModel.StatusOK)
+{
+    <form method="post">
+        <input type="text" name="code" value="@Model.Code" />
+        <input type="submit" />
+    </form>
+}
+
