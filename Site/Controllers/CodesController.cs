@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Site.Models;
 using Site.Services;
 using System;
@@ -15,6 +16,7 @@ namespace Site.Controllers
         {
             _gen = generator;
         }
+        //[Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             _gen.GenCode();
@@ -22,6 +24,26 @@ namespace Site.Controllers
             m.Code = _gen.Code;
             m.Exp = _gen.GenTime.AddMinutes(5);
             return View(m);
+        }
+
+        [HttpGet]
+        public IActionResult EnterCode()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EnterCode(int code)
+        {
+            if (_gen.Code == code)
+            {
+
+            }
+            else
+            {
+
+            }
+            return View();
         }
     }
 }
