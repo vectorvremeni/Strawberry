@@ -10,7 +10,7 @@ namespace Site.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public DbSet<Presents> Presents { get;set; }
+        public DbSet<Present> Presents { get;set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -18,10 +18,11 @@ namespace Site.Data
     }
 
     [Table("Presents", Schema ="PR")]
-    public class Presents
+    public class Present
     {
         [Key]
         public int? Id { get; set; }
         public DateTime Date { get; set; }
+        public String UserId { get; set; }
     }
 }
