@@ -10,6 +10,11 @@ connection.onclose(function () {
 	start();
 });
 
+connection.on("UpdateCode", function ()
+{
+	window.location.reload();
+});
+
 function start() {
 	connection.start().then(function () {
 		ReconnectTimeout = 1;

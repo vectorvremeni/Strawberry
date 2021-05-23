@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using SignalR.Hubs;
 using Site.Models;
 using Site.Services;
 using System;
@@ -12,9 +14,11 @@ namespace Site.Controllers
     public class CodesController : Controller
     {
         CodeGenerator _gen;
-        public CodesController(CodeGenerator generator)
+        IHubContext<Hubs> _hub;
+        public CodesController(CodeGenerator generator, IHubContext<Hubs> hub)
         {
             _gen = generator;
+            _hub = hub;
         }
         //[Authorize(Roles = "Admin")]
         public IActionResult Index()
@@ -40,6 +44,7 @@ namespace Site.Controllers
             {
                 m.Message = "OK";
                 m.Status = EnterCodeModel.StatusOK;
+                _hub.Clients.All.SendAsync("UpdateCode");
             }
             else
             {
